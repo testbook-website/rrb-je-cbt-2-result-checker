@@ -2,7 +2,7 @@
 # Usage: Place any new RRB zone PDFs in this directory and run: .\update_zones.ps1
 
 Write-Host "Scanning for RRB PDFs..." -ForegroundColor Cyan
-$pdfFiles = Get-ChildItem -Filter "RRB*.pdf"
+$pdfFiles = Get-ChildItem -Filter "RRB*.pdf" | Sort-Object Name
 
 if ($pdfFiles.Count -eq 0) {
     Write-Host "No RRB PDF files found." -ForegroundColor Yellow
@@ -26,7 +26,7 @@ $zoneList = @()
 foreach ($pdf in $pdfFiles) {
     $tempTxt = "$($pdf.BaseName)_temp.txt"
     & $pdftotext -layout $pdf.FullName $tempTxt
-    $content = Get-Content $tempTxt -Raw
+    $content = [System.IO.File]::ReadAllText($tempTxt, [System.Text.Encoding]::UTF8)
     
     # Extract 16-digit roll numbers
     $rolls = [regex]::Matches($content, '\b\d{16}\b') | ForEach-Object { $_.Value } | Sort-Object -Unique
@@ -35,7 +35,7 @@ foreach ($pdf in $pdfFiles) {
     $cleanName = $pdf.BaseName -replace "\.pdf$", ""
     $id = $cleanName.ToLower().Replace("rrb", "").Replace(" ", "").Trim()
     
-    Write-Host "  -> $cleanName: Found $($rolls.Count) shortlisted candidates (Prefix: $prefix)" -ForegroundColor Green
+    Write-Host "  -> ${cleanName}: Found $($rolls.Count) shortlisted candidates (Prefix: $prefix)" -ForegroundColor Green
     
     $zoneList += @{
         id = $id
@@ -61,15 +61,15 @@ $data = @{
 if (!(Test-Path "data")) { New-Item -ItemType Directory -Path "data" }
 
 $json = $data | ConvertTo-Json -Depth 5
-Set-Content -Path "data/zones.json" -Value $json -Encoding UTF8
-Set-Content -Path "data/zones.js" -Value ("window.RRB_ZONES_DATA = " + $json + ";") -Encoding UTF8
+[System.IO.File]::WriteAllText("data/zones.json", $json, [System.Text.Encoding]::UTF8)
+[System.IO.File]::WriteAllText("data/zones.js", ("window.RRB_ZONES_DATA = " + $json + ";"), [System.Text.Encoding]::UTF8)
 
-# Update inline data in index.html
-$indexHtml = Get-Content "index.html" -Raw
+# Update inline data in index.html safely with UTF-8
+$indexHtml = [System.IO.File]::ReadAllText("index.html", [System.Text.Encoding]::UTF8)
 $regex = New-Object System.Text.RegularExpressions.Regex("const INLINE_RRB_DATA = \{[\s\S]*?\};")
 $newInline = "const INLINE_RRB_DATA = $json;"
 $updatedHtml = $regex.Replace($indexHtml, $newInline, 1)
-Set-Content -Path "index.html" -Value $updatedHtml -Encoding UTF8
+[System.IO.File]::WriteAllText("index.html", $updatedHtml, [System.Text.Encoding]::UTF8)
 
 Write-Host "`nSuccessfully updated data/zones.json, data/zones.js, and index.html!" -ForegroundColor Cyan
 Write-Host "Total zones configured: $($zoneList.Count)" -ForegroundColor Green

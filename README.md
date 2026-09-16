@@ -9,9 +9,12 @@ All candidate submissions (Name, Mobile Number, Roll Number, Zone, and Shortlist
 ## 🌟 Key Features
 
 - **Accurate Zone Verification**: Includes officially verified shortlist candidates:
+  - **RRB Ahmedabad**: 148 shortlisted candidates (Prefix `11525...`)
+  - **RRB Bilaspur**: 125 shortlisted candidates (Prefix `30525...`)
   - **RRB Kolkata**: 626 shortlisted candidates (Prefix `22525...`)
+  - **RRB Mumbai**: 430 shortlisted candidates (Prefix `24525...`)
   - **RRB Ranchi**: 108 shortlisted candidates (Prefix `27525...`)
-  - Easily extensible to other RRB zones.
+  - **Total**: 1,437 shortlisted candidates across 5 RRB zones!
 - **Instant Result Feedback**:
   - **Qualified / Shortlisted**: Celebratory particle confetti explosion, candidate verification slip, and official DV & Medical Exam guidelines.
   - **Not Shortlisted**: Empathetic guidance with verification tips and advisory to check individual scorecard on the RRB portal.
