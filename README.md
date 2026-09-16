@@ -13,8 +13,8 @@ All candidate submissions (Name, Mobile Number, Roll Number, Zone, and Shortlist
   - **RRB Ranchi**: 108 shortlisted candidates (Prefix `27525...`)
   - Easily extensible to other RRB zones.
 - **Instant Result Feedback**:
-  - **🎉 Qualified / Shortlisted**: Celebratory particle confetti explosion, candidate verification slip, official DV & Medical Exam guidelines, WhatsApp share link, and clean 1-page PDF print view.
-  - **❌ Not Shortlisted**: Empathetic guidance with verification tips and advisory to check individual scorecard on the RRB portal.
+  - **Qualified / Shortlisted**: Celebratory particle confetti explosion, candidate verification slip, and official DV & Medical Exam guidelines.
+  - **Not Shortlisted**: Empathetic guidance with verification tips and advisory to check individual scorecard on the RRB portal.
 - **Lead Capture to Google Sheets**: Captures candidate Name, Mobile Number, Roll Number, Zone, Qualification Status, Timestamp, and Device info.
 - **100% Self-Contained**: Works seamlessly out of the box when pushed to **GitHub Pages**, embedded in an **`<iframe>`**, or opened directly in a browser.
 - **Iframe Auto-Resize Support**: Emits `rrb-widget-resize` `postMessage` events so the parent container can auto-adjust its height.
@@ -24,22 +24,19 @@ All candidate submissions (Name, Mobile Number, Roll Number, Zone, and Shortlist
 
 ## 🚀 How to Publish to GitHub & GitHub Pages
 
-1. **Initialize Git & Push**:
+1. **Push to Remote**:
    ```bash
-   git init
-   git add .
-   git commit -m "Initial commit of RRB JE CBT 2 Result Checker widget"
    git branch -M main
-   git remote add origin https://github.com/YOUR_USERNAME/rrb-je-result-checker.git
+   git remote add origin https://github.com/testbook-website/rrb-je-cbt-2-result-checker.git
    git push -u origin main
    ```
 
 2. **Enable GitHub Pages**:
-   - Go to your repository on GitHub.
+   - Go to your repository on GitHub: `https://github.com/testbook-website/rrb-je-cbt-2-result-checker`
    - Click **Settings** > **Pages** (in the left sidebar).
    - Under **Build and deployment** > **Branch**, select `main` and `/ (root)`.
    - Click **Save**.
-   - Your widget will be live at: `https://YOUR_USERNAME.github.io/rrb-je-result-checker/`
+   - Your widget will be live at: `https://testbook-website.github.io/rrb-je-cbt-2-result-checker/`
 
 ---
 
@@ -50,14 +47,13 @@ Insert this HTML snippet wherever you want the widget to appear:
 ```html
 <!-- RRB JE CBT-2 Result Checker Widget -->
 <iframe 
-  src="https://YOUR_USERNAME.github.io/rrb-je-result-checker/" 
+  src="https://testbook-website.github.io/rrb-je-cbt-2-result-checker/" 
   width="100%" 
-  height="750" 
+  height="560" 
   frameborder="0" 
-  style="border: none; border-radius: 16px; overflow: hidden; max-width: 600px; margin: 0 auto; display: block;"
+  style="border: none; border-radius: 12px; overflow: hidden; max-width: 540px; margin: 0 auto; display: block;"
   title="RRB JE CBT-2 Result Checker"
-  loading="lazy"
-  allowtransparency="true">
+  loading="lazy">
 </iframe>
 ```
 
