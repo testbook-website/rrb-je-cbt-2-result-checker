@@ -1,0 +1,2229 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>RRB JE CBT-2 Result Checker | CEN 05/2025 Shortlist Status</title>
+  <meta name="description" content="Check RRB Junior Engineer (JE, DMS, CMA) CBT 2 exam result and DV/Medical examination shortlisting status for CEN 05/2025.">
+  
+  <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Optional external dataset -->
+  <script src="data/zones.js"></script>
+
+  <style>
+    :root {
+      /* Clean Ultra-Light Theme */
+      --bg-body: #f1f5f9;
+      --bg-card: #ffffff;
+      --border-card: #e2e8f0;
+      --primary: #0284c7;
+      --primary-hover: #0369a1;
+      --primary-light: #e0f2fe;
+      --primary-border: #bae6fd;
+      --emerald: #059669;
+      --emerald-light: #ecfdf5;
+      --emerald-border: #a7f3d0;
+      --rose: #e11d48;
+      --rose-light: #fff1f2;
+      --rose-border: #fecdd3;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-subtle: #64748b;
+      --input-bg: #f8fafc;
+      --input-border: #cbd5e1;
+      --input-focus-border: #0284c7;
+      --radius-lg: 12px;
+      --radius-md: 8px;
+      --radius-sm: 5px;
+      --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-body);
+      background-image: 
+        radial-gradient(at 10% 10%, rgba(2, 132, 199, 0.05) 0px, transparent 40%),
+        radial-gradient(at 90% 90%, rgba(5, 150, 105, 0.05) 0px, transparent 40%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      line-height: 1.4;
+    }
+
+    /* Confetti Canvas */
+    #confettiCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* Compact Widget Shell (20% smaller vertical profile) */
+    .widget-container {
+      width: 100%;
+      max-width: 540px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .widget-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.05),
+        0 10px 25px -5px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    /* Compact Header Bar */
+    .widget-header {
+      padding: 12px 18px 10px;
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      border-bottom: 1px solid var(--border-card);
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      background: #ecfdf5;
+      color: #059669;
+      border: 1px solid #a7f3d0;
+    }
+
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      background: #059669;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #059669;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.25); opacity: 1; box-shadow: 0 0 8px #10b981; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+
+    .cen-tag {
+      font-size: 10.5px;
+      font-weight: 600;
+      color: #0284c7;
+      background: #f0f9ff;
+      padding: 1px 7px;
+      border-radius: 4px;
+      border: 1px solid #bae6fd;
+    }
+
+    .header-branding {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .railway-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+    }
+
+    .railway-logo svg {
+      width: 20px;
+      height: 20px;
+      fill: #ffffff;
+    }
+
+    .branding-text h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 15.5px;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .branding-text p {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 1px;
+    }
+
+    /* Compact Body Padding */
+    .widget-body {
+      padding: 16px 18px;
+    }
+
+    /* Compact Form Controls (-20% height) */
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .form-label .helper {
+      font-size: 11px;
+      color: var(--text-subtle);
+      font-weight: 400;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 11px;
+      color: var(--text-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      transition: var(--transition);
+    }
+
+    .input-icon svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .form-control {
+      width: 100%;
+      height: 38px;
+      background: var(--input-bg);
+      border: 1.5px solid var(--input-border);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 13.5px;
+      padding: 0 10px 0 36px;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      background: #ffffff;
+      border-color: var(--input-focus-border);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+
+    select.form-control {
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+      padding-right: 32px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      background-size: 14px;
+    }
+
+    select.form-control option {
+      background: #ffffff;
+      color: #0f172a;
+      padding: 8px;
+    }
+
+    /* Mobile input prefix */
+    .mobile-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .mobile-prefix {
+      position: absolute;
+      left: 10px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding-right: 6px;
+      border-right: 1px solid var(--input-border);
+      pointer-events: none;
+    }
+
+    .flag-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      background: #e2e8f0;
+      color: #334155;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+
+    .mobile-input {
+      padding-left: 70px !important;
+      letter-spacing: 0.5px;
+    }
+
+    .roll-input {
+      letter-spacing: 0.8px;
+      font-family: 'Inter', monospace, sans-serif;
+      font-weight: 600;
+    }
+
+    .validation-hint {
+      font-size: 11px;
+      color: var(--text-subtle);
+      margin-top: 3px;
+    }
+
+    /* Compact Quick Test Chips */
+    .quick-samples {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-top: 5px;
+    }
+
+    .quick-samples span {
+      font-size: 10.5px;
+      color: var(--text-subtle);
+      font-weight: 500;
+    }
+
+    .sample-pill {
+      font-size: 10.5px;
+      padding: 2px 7px;
+      background: #e2e8f0;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      color: #334155;
+      cursor: pointer;
+      transition: var(--transition);
+      font-weight: 500;
+    }
+
+    .sample-pill:hover {
+      background: #e0f2fe;
+      color: #0284c7;
+      border-color: #bae6fd;
+    }
+
+    /* Compact Submit CTA Button */
+    .btn-submit {
+      width: 100%;
+      height: 40px;
+      border: none;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      box-shadow: 0 3px 10px -1px rgba(2, 132, 199, 0.35);
+      transition: var(--transition);
+      margin-top: 4px;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.45);
+      transform: translateY(-1px);
+    }
+
+    .btn-submit:active:not(:disabled) {
+      transform: translateY(0.5px);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 0.75s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* Compact Result Views */
+    .result-view {
+      display: none;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Banners */
+    .result-banner {
+      border-radius: var(--radius-md);
+      padding: 12px 14px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .banner-success {
+      background: var(--emerald-light);
+      border: 1.5px solid var(--emerald-border);
+    }
+
+    .banner-danger {
+      background: var(--rose-light);
+      border: 1.5px solid var(--rose-border);
+    }
+
+    .result-icon-wrap {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin: 0 auto 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .icon-success-wrap {
+      background: #059669;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(5, 150, 105, 0.3);
+    }
+
+    .icon-danger-wrap {
+      background: #e11d48;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(225, 29, 72, 0.3);
+    }
+
+    .result-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+
+    .title-success { color: #065f46; }
+    .title-danger { color: #9f1239; }
+
+    .result-subtitle {
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    .subtitle-success { color: #047857; font-weight: 600; }
+    .subtitle-danger { color: #be123c; font-weight: 500; }
+
+    /* Compact Verification Table */
+    .slip-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 12px;
+      background: #f8fafc;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-card);
+    }
+
+    .slip-table tr {
+      border-bottom: 1px solid var(--border-card);
+    }
+
+    .slip-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .slip-table th {
+      text-align: left;
+      padding: 6px 12px;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--text-subtle);
+      width: 40%;
+      background: #f1f5f9;
+    }
+
+    .slip-table td {
+      padding: 6px 12px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .status-badge-inline {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+    }
+
+    .badge-qualified {
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+    }
+
+    .badge-not-found {
+      background: #fff1f2;
+      color: #be123c;
+      border: 1px solid #fecdd3;
+    }
+
+    /* Compact Notice Alert Box */
+    .notice-box {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-left: 3px solid #0284c7;
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      color: #334155;
+      margin-bottom: 12px;
+      line-height: 1.45;
+    }
+
+    .notice-box strong {
+      color: #0369a1;
+    }
+
+    .notice-box ul {
+      margin-left: 14px;
+      margin-top: 3px;
+    }
+
+    .notice-box li {
+      margin-bottom: 2px;
+    }
+
+    /* Compact Action Buttons */
+    .action-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .btn-action {
+      height: 36px;
+      border-radius: var(--radius-md);
+      font-size: 12.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      border: 1px solid transparent;
+    }
+
+    .btn-print {
+      background: #f1f5f9;
+      color: #334155;
+      border-color: #cbd5e1;
+    }
+
+    .btn-print:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .btn-whatsapp {
+      background: #16a34a;
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(22, 163, 74, 0.25);
+    }
+
+    .btn-whatsapp:hover {
+      background: #15803d;
+      transform: translateY(-1px);
+    }
+
+    .btn-reset {
+      width: 100%;
+      height: 34px;
+      background: transparent;
+      border: 1px solid var(--input-border);
+      color: var(--text-muted);
+      border-radius: var(--radius-md);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .btn-reset:hover {
+      background: #f8fafc;
+      color: var(--text-main);
+      border-color: #94a3b8;
+    }
+
+    /* Compact Widget Footer */
+    .widget-footer {
+      padding: 8px 16px;
+      background: #f8fafc;
+      border-top: 1px solid var(--border-card);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-subtle);
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-btn {
+      background: none;
+      border: none;
+      color: var(--text-subtle);
+      font-size: 11px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+
+    .footer-btn:hover {
+      color: #0284c7;
+    }
+
+    /* Modal / Drawer */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.5);
+      backdrop-filter: blur(3px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 10000;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      max-width: 440px;
+      width: 100%;
+      color: var(--text-main);
+      box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.15);
+      position: relative;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .modal-header h3 {
+      font-size: 14.5px;
+      font-weight: 700;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: #64748b;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .code-snippet {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 10px;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 11.5px;
+      color: #0369a1;
+      word-break: break-all;
+      user-select: all;
+      margin-bottom: 10px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.25s ease;
+      z-index: 10001;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Print Stylesheet */
+    @media print {
+      body {
+        background: #ffffff !important;
+        padding: 0 !important;
+      }
+      #confettiCanvas, .widget-footer, .action-row, .btn-reset, .badge-live, .quick-samples, #formView {
+        display: none !important;
+      }
+      .widget-container, .widget-card {
+        max-width: 100% !important;
+        box-shadow: none !important;
+        border: 1px solid #000 !important;
+      }
+      .slip-table {
+        border: 1px solid #000 !important;
+      }
+      .slip-table th, .slip-table td {
+        border: 1px solid #ccc !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 6px; }
+      .widget-body { padding: 14px 12px; }
+      .widget-header { padding: 10px 12px; }
+      .branding-text h1 { font-size: 14px; }
+      .action-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particle Confetti Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <div class="widget-container">
+    <div class="widget-card">
+      
+      <!-- Widget Header -->
+      <header class="widget-header">
+        <div class="header-top">
+          <div class="badge-live">
+            <span class="pulse-dot"></span>
+            <span>Live Shortlist CBT-2</span>
+          </div>
+          <span class="cen-tag">CEN No. 05/2025</span>
+        </div>
+
+        <div class="header-branding">
+          <div class="railway-logo" title="Indian Railways / RRB">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2C8 2 4 2.5 4 6v9.5c0 1.93 1.57 3.5 3.5 3.5L6 21v1h12v-1l-1.5-2c1.93 0 3.5-1.57 3.5-3.5V6c0-3.5-4-4-8-4zm-4 13.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm8 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm2-6H6V6h12v3.5z"/>
+            </svg>
+          </div>
+          <div class="branding-text">
+            <h1>RRB JE CBT-2 Result Checker</h1>
+            <p>Railway Recruitment Boards (DV &amp; Medical Shortlist)</p>
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Interactive Body -->
+      <main class="widget-body">
+        
+        <!-- STEP 1: FORM INPUT VIEW -->
+        <div id="formView">
+          <form id="resultForm" onsubmit="handleCheckResult(event)">
+            
+            <!-- Zone Selection -->
+            <div class="form-group">
+              <label class="form-label" for="zoneSelect">
+                <span>Select Your RRB Zone</span>
+                <span class="helper" id="zoneCountBadge">2 Zones Available</span>
+              </label>
+              <div class="input-wrapper">
+                <select id="zoneSelect" class="form-control" required onchange="handleZoneChange()">
+                  <option value="" disabled selected>-- Select Your Applied RRB Zone --</option>
+                  <!-- Populated dynamically -->
+                </select>
+                <div class="input-icon">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Candidate Full Name -->
+            <div class="form-group">
+              <label class="form-label" for="candidateName">
+                <span>Candidate Full Name</span>
+                <span class="helper">As on Admit Card</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="text" id="candidateName" class="form-control" placeholder="e.g. Rahul Sharma" required autocomplete="name" maxlength="60">
+                <div class="input-icon">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Mobile Number -->
+            <div class="form-group">
+              <label class="form-label" for="mobileNumber">
+                <span>Mobile Number</span>
+                <span class="helper">10 Digits</span>
+              </label>
+              <div class="mobile-wrapper">
+                <div class="mobile-prefix">
+                  <span class="flag-badge">IND</span>
+                  <span>+91</span>
+                </div>
+                <input type="tel" id="mobileNumber" class="form-control mobile-input" placeholder="98765 43210" required pattern="[6-9][0-9]{9}" maxlength="10" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+              </div>
+              <div class="validation-hint">Enter 10-digit registered Indian mobile number</div>
+            </div>
+
+            <!-- Roll Number -->
+            <div class="form-group">
+              <label class="form-label" for="rollNumber">
+                <span>CBT-2 Roll Number</span>
+                <span class="helper" id="rollPrefixHint">16 Digits</span>
+              </label>
+              <div class="input-wrapper">
+                <input type="text" id="rollNumber" class="form-control roll-input" placeholder="e.g. 2252511200532479" required maxlength="18" autocomplete="off" oninput="cleanRollInput(this)">
+                <div class="input-icon">
+                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <!-- Quick Test Sample Chips -->
+              <div class="quick-samples" id="sampleChips">
+                <span>Test:</span>
+                <!-- Injected dynamically -->
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" id="btnSubmit" class="btn-submit">
+              <span id="btnText">Check My Result</span>
+              <div class="spinner" id="btnSpinner"></div>
+              <svg id="btnArrow" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <!-- STEP 2: RESULT VIEW (QUALIFIED / SHORTLISTED) -->
+        <div id="resultQualifiedView" class="result-view">
+          <div class="result-banner banner-success">
+            <div class="result-icon-wrap icon-success-wrap">
+              <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
+              </svg>
+            </div>
+            <h2 class="result-title title-success">CONGRATULATIONS!</h2>
+            <p class="result-subtitle subtitle-success">You have been Provisionally Shortlisted for Document Verification (DV) &amp; Medical Examination (ME)!</p>
+          </div>
+
+          <!-- Official Verification Slip -->
+          <table class="slip-table" id="qualifiedSlip">
+            <tr>
+              <th>Candidate Name</th>
+              <td id="resQualName">-</td>
+            </tr>
+            <tr>
+              <th>Roll Number</th>
+              <td id="resQualRoll" style="letter-spacing: 0.5px; font-family: monospace;">-</td>
+            </tr>
+            <tr>
+              <th>Mobile Number</th>
+              <td id="resQualMobile">-</td>
+            </tr>
+            <tr>
+              <th>Selected RRB Zone</th>
+              <td id="resQualZone">-</td>
+            </tr>
+            <tr>
+              <th>CEN Notification</th>
+              <td>CEN No. 05/2025 (JE, DMS, CMA)</td>
+            </tr>
+            <tr>
+              <th>Exam Stage</th>
+              <td>2nd Stage CBT (Exam Date: 02.07.2026)</td>
+            </tr>
+            <tr>
+              <th>Shortlist Status</th>
+              <td><span class="status-badge-inline badge-qualified">PROVISIONALLY QUALIFIED FOR DV &amp; ME</span></td>
+            </tr>
+            <tr>
+              <th>Notice Date</th>
+              <td>16 September 2026</td>
+            </tr>
+          </table>
+
+          <!-- Official DV Instructions Notice with Clean Pure HTML Icons -->
+          <div class="notice-box">
+            <strong>Next Steps for Shortlisted Candidates:</strong>
+            <ul>
+              <li>E-Call letters with date, reporting time &amp; session will be issued via SMS/Email shortly.</li>
+              <li>Carry all original certificates + 2 sets of self-attested A4 Xerox copies.</li>
+              <li>Medical Examination will be conducted the next day at Railway Hospital (Prescribed Fee: Rs. 24 only).</li>
+            </ul>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="action-row">
+            <button class="btn-action btn-print" onclick="window.print()">
+              <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+              </svg>
+              <span>Print Result Slip</span>
+            </button>
+            <a id="btnShareWhatsApp" class="btn-action btn-whatsapp" target="_blank" rel="noopener">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.91-9.91-9.91zm0 18.12c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31c-.82-1.31-1.26-2.83-1.26-4.39 0-4.52 3.68-8.2 8.2-8.2 4.52 0 8.2 3.68 8.2 8.2 0 4.52-3.68 8.2-8.2 8.2zm4.49-6.14c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05s.88 2.38 1 2.54c.12.17 1.74 2.65 4.21 3.72.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.1-.23-.17-.48-.29z"/>
+              </svg>
+              <span>Share on WhatsApp</span>
+            </a>
+          </div>
+
+          <button class="btn-reset" onclick="resetForm()">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
+            <span>Check Another Roll Number</span>
+          </button>
+        </div>
+
+        <!-- STEP 3: RESULT VIEW (NOT SHORTLISTED) -->
+        <div id="resultNotSelectedView" class="result-view">
+          <div class="result-banner banner-danger">
+            <div class="result-icon-wrap icon-danger-wrap">
+              <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </div>
+            <h2 class="result-title title-danger">Roll Number Not Found</h2>
+            <p class="result-subtitle subtitle-danger">This Roll Number is not present in the CBT-2 Document Verification shortlist for the selected zone.</p>
+          </div>
+
+          <table class="slip-table">
+            <tr>
+              <th>Candidate Name</th>
+              <td id="resNotName">-</td>
+            </tr>
+            <tr>
+              <th>Roll Number</th>
+              <td id="resNotRoll" style="font-family: monospace;">-</td>
+            </tr>
+            <tr>
+              <th>Zone Checked</th>
+              <td id="resNotZone">-</td>
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td><span class="status-badge-inline badge-not-found">NOT SHORTLISTED IN THIS LIST</span></td>
+            </tr>
+          </table>
+
+          <div class="notice-box" style="border-left-color: #e11d48; background: #fff1f2; border-color: #fecdd3;">
+            <strong style="color: #9f1239;">Important Clarifications:</strong>
+            <ul>
+              <li>Please ensure you have selected the exact RRB zone you applied for.</li>
+              <li>Verify the 16-digit Roll Number printed on your 2nd Stage CBT Admit Card.</li>
+              <li>Individual scorecards can be viewed by logging into the RRB portal using Registration No. and DOB.</li>
+            </ul>
+          </div>
+
+          <button class="btn-reset" onclick="resetForm()">
+            <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 15l-3-3m0 0l3-3m-3 3h8M3 12a9 9 0 1118 0 9 9 0 01-18 0z"/>
+            </svg>
+            <span>Try Again / Recheck Details</span>
+          </button>
+        </div>
+
+      </main>
+
+      <!-- Compact Footer -->
+      <footer class="widget-footer">
+        <div>Official RRB CEN 05/2025 Data</div>
+        <div class="footer-links">
+          <button class="footer-btn" onclick="openEmbedModal()">
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+            <span>Embed Widget</span>
+          </button>
+          <button class="footer-btn" onclick="openSettingsModal()" title="Google Sheet Deployment URL Config">
+            <svg width="12" height="12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            </svg>
+            <span>Sheet Config</span>
+          </button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Modal: Embed Iframe Code -->
+  <div id="embedModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event, 'embedModal')">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Embed on Your Website / Blog</h3>
+        <button class="modal-close" onclick="closeModal('embedModal')">&times;</button>
+      </div>
+      <p style="font-size: 12px; color: #64748b; margin-bottom: 10px;">Copy and paste this HTML snippet wherever you want the result checker widget to appear:</p>
+      <div class="code-snippet" id="iframeSnippet">&lt;iframe src="" width="100%" height="560" frameborder="0" style="border:none; border-radius:12px; overflow:hidden;"&gt;&lt;/iframe&gt;</div>
+      <button class="btn-submit" style="height: 36px; font-size: 12.5px;" onclick="copyIframeCode()">
+        <span id="copyBtnText">Copy Embed Code</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal: Sheet Deployment URL Settings -->
+  <div id="settingsModal" class="modal-backdrop" onclick="closeModalOnBackdrop(event, 'settingsModal')">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Google Sheet Webhook URL</h3>
+        <button class="modal-close" onclick="closeModal('settingsModal')">&times;</button>
+      </div>
+      <p style="font-size: 12px; color: #64748b; margin-bottom: 12px;">
+        Deploy <code>GoogleAppsScript.js</code> as a Web App (Access: "Anyone") and paste your Deployment URL below. All student entries are logged directly into your Google Sheet.
+      </p>
+      <div class="form-group">
+        <label class="form-label">Apps Script Web App URL</label>
+        <input type="url" id="sheetUrlInput" class="form-control" style="padding-left: 10px;" placeholder="https://script.google.com/macros/s/.../exec">
+      </div>
+      <button class="btn-submit" style="height: 36px; font-size: 12.5px;" onclick="saveSheetUrl()">Save Configuration</button>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">
+    <svg width="16" height="16" fill="none" stroke="#34d399" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+    </svg>
+    <span id="toastMsg">Data saved successfully</span>
+  </div>
+
+  <!-- Widget Logic -->
+  <script>
+    /**
+     * RRB JE CBT-2 RESULT CHECKER CORE LOGIC
+     */
+
+    // Configuration: User's deployed Google Apps Script Web App URL
+    const DEFAULT_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw5BYEqz3NHk2vmDNiMdrO2EjIwXSNRqWg4QRvk69uYMTyTbNhnV_AiNmsuJ3cpaIM6/exec";
+    let APPS_SCRIPT_URL = localStorage.getItem("RRB_SHEET_URL") || DEFAULT_APPS_SCRIPT_URL;
+
+    // Dataset reference
+    const INLINE_RRB_DATA = {
+    "updatedAt":  "2026-09-16 15:21:03",
+    "zones":  [
+                  {
+                      "shortName":  "RRB Kolkata",
+                      "id":  "kolkata",
+                      "sampleRolls":  [
+                                          "2252511200532479",
+                                          "2252511200534637",
+                                          "2252562800501547"
+                                      ],
+                      "prefix":  "22525",
+                      "rolls":  [
+                                    "2252511200532479",
+                                    "2252511200534637",
+                                    "2252511300346309",
+                                    "2252511300440162",
+                                    "2252511300454864",
+                                    "2252511300487354",
+                                    "2252511300507874",
+                                    "2252511300540327",
+                                    "2252511300568478",
+                                    "2252511400438704",
+                                    "2252511500351028",
+                                    "2252511500539239",
+                                    "2252511600299236",
+                                    "2252511600300647",
+                                    "2252511600333514",
+                                    "2252511600414236",
+                                    "2252511600439876",
+                                    "2252511600442149",
+                                    "2252511600456500",
+                                    "2252511600460293",
+                                    "2252511700295511",
+                                    "2252511700344139",
+                                    "2252511700351155",
+                                    "2252511700455127",
+                                    "2252511700492328",
+                                    "2252511700493021",
+                                    "2252511700499841",
+                                    "2252511700503151",
+                                    "2252511700530722",
+                                    "2252511700533183",
+                                    "2252511700536416",
+                                    "2252511700538405",
+                                    "2252511700542897",
+                                    "2252511700552568",
+                                    "2252511700552983",
+                                    "2252511700565408",
+                                    "2252511700570647",
+                                    "2252511800296070",
+                                    "2252511900318989",
+                                    "2252511900339335",
+                                    "2252511900348267",
+                                    "2252511900449048",
+                                    "2252511900453562",
+                                    "2252511900457315",
+                                    "2252511900458086",
+                                    "2252511900487569",
+                                    "2252511900530225",
+                                    "2252511900531477",
+                                    "2252511900536444",
+                                    "2252511900570192",
+                                    "2252511900571704",
+                                    "2252511900572552",
+                                    "2252512000455093",
+                                    "2252512000505844",
+                                    "2252512000506083",
+                                    "2252512000548371",
+                                    "2252512000554927",
+                                    "2252512000558309",
+                                    "2252512100500188",
+                                    "2252512200295086",
+                                    "2252512200299681",
+                                    "2252512200306155",
+                                    "2252512200306157",
+                                    "2252512200326295",
+                                    "2252512200413833",
+                                    "2252512200441179",
+                                    "2252512200449350",
+                                    "2252512200453744",
+                                    "2252512200486804",
+                                    "2252512200489966",
+                                    "2252512200493667",
+                                    "2252512200494116",
+                                    "2252512200498006",
+                                    "2252512200500342",
+                                    "2252512200505033",
+                                    "2252512200530535",
+                                    "2252512200535688",
+                                    "2252512200538472",
+                                    "2252512200542868",
+                                    "2252512200544284",
+                                    "2252512200545932",
+                                    "2252512200550499",
+                                    "2252512200555294",
+                                    "2252512200558885",
+                                    "2252512200560417",
+                                    "2252512200563955",
+                                    "2252512200566155",
+                                    "2252512200569934",
+                                    "2252512200570454",
+                                    "2252512300302979",
+                                    "2252512300452339",
+                                    "2252512300456456",
+                                    "2252512300494146",
+                                    "2252512300497176",
+                                    "2252512300497882",
+                                    "2252512300500040",
+                                    "2252512300503056",
+                                    "2252512300503406",
+                                    "2252512300504855",
+                                    "2252512300536611",
+                                    "2252512300538286",
+                                    "2252512300545275",
+                                    "2252512300558525",
+                                    "2252512300572529",
+                                    "2252512400507373",
+                                    "2252512400509739",
+                                    "2252512400545844",
+                                    "2252512500506134",
+                                    "2252512500563336",
+                                    "2252512500568441",
+                                    "2252512600294052",
+                                    "2252512600296203",
+                                    "2252512600312286",
+                                    "2252512600460018",
+                                    "2252512600489079",
+                                    "2252512600489796",
+                                    "2252512600492394",
+                                    "2252512600542012",
+                                    "2252512600545236",
+                                    "2252512600551523",
+                                    "2252512600557312",
+                                    "2252512700351136",
+                                    "2252512700454174",
+                                    "2252512700489641",
+                                    "2252512700490860",
+                                    "2252512700492355",
+                                    "2252512700545200",
+                                    "2252512700550899",
+                                    "2252512700565599",
+                                    "2252512800306169",
+                                    "2252512800414645",
+                                    "2252512800459501",
+                                    "2252512800500939",
+                                    "2252512800555812",
+                                    "2252512800558929",
+                                    "2252512800563532",
+                                    "2252512800572576",
+                                    "2252512900461118",
+                                    "2252512900503160",
+                                    "2252513000312566",
+                                    "2252513000449809",
+                                    "2252513100444602",
+                                    "2252513100536487",
+                                    "2252513100561214",
+                                    "2252513100566789",
+                                    "2252521200498451",
+                                    "2252521200564940",
+                                    "2252521300295926",
+                                    "2252521300486184",
+                                    "2252521300490013",
+                                    "2252521300495895",
+                                    "2252521300498257",
+                                    "2252521300506925",
+                                    "2252521300569532",
+                                    "2252521300572879",
+                                    "2252521600339232",
+                                    "2252521600507953",
+                                    "2252521600536701",
+                                    "2252521700298861",
+                                    "2252521700312349",
+                                    "2252521700457702",
+                                    "2252521700555277",
+                                    "2252521700557696",
+                                    "2252521900294051",
+                                    "2252521900297114",
+                                    "2252521900326086",
+                                    "2252521900332682",
+                                    "2252521900345078",
+                                    "2252521900348412",
+                                    "2252521900348547",
+                                    "2252521900503481",
+                                    "2252521900510295",
+                                    "2252521900530734",
+                                    "2252521900532856",
+                                    "2252521900538009",
+                                    "2252521900540626",
+                                    "2252521900571322",
+                                    "2252521900571479",
+                                    "2252522000449272",
+                                    "2252522200346343",
+                                    "2252522200413188",
+                                    "2252522200414706",
+                                    "2252522200439982",
+                                    "2252522200445082",
+                                    "2252522200450159",
+                                    "2252522200454369",
+                                    "2252522200455335",
+                                    "2252522200456717",
+                                    "2252522200460283",
+                                    "2252522200460582",
+                                    "2252522200488008",
+                                    "2252522200500508",
+                                    "2252522200504176",
+                                    "2252522200505009",
+                                    "2252522200505398",
+                                    "2252522200505507",
+                                    "2252522200505598",
+                                    "2252522200507362",
+                                    "2252522200537791",
+                                    "2252522200541257",
+                                    "2252522200548886",
+                                    "2252522200549845",
+                                    "2252522200551553",
+                                    "2252522200553950",
+                                    "2252522200561293",
+                                    "2252522200563518",
+                                    "2252522200564242",
+                                    "2252522200569638",
+                                    "2252522200570107",
+                                    "2252522200571613",
+                                    "2252522200572294",
+                                    "2252522300441259",
+                                    "2252522300496546",
+                                    "2252522300531413",
+                                    "2252522300538268",
+                                    "2252522300557326",
+                                    "2252522400553528",
+                                    "2252522400556207",
+                                    "2252522500570883",
+                                    "2252522600294097",
+                                    "2252522600295968",
+                                    "2252522600544702",
+                                    "2252522600562684",
+                                    "2252522700296502",
+                                    "2252522700348118",
+                                    "2252522700438208",
+                                    "2252522700544257",
+                                    "2252522800532372",
+                                    "2252523000545812",
+                                    "2252523100296026",
+                                    "2252523100297688",
+                                    "2252523100314316",
+                                    "2252523100314322",
+                                    "2252523100506331",
+                                    "2252531200312228",
+                                    "2252531200347654",
+                                    "2252531200414130",
+                                    "2252531200442181",
+                                    "2252531200450088",
+                                    "2252531200452453",
+                                    "2252531200459649",
+                                    "2252531200488520",
+                                    "2252531200492483",
+                                    "2252531200494177",
+                                    "2252531200539571",
+                                    "2252531200557692",
+                                    "2252531200564145",
+                                    "2252531200564671",
+                                    "2252531200570121",
+                                    "2252531300459397",
+                                    "2252531300489141",
+                                    "2252531300550512",
+                                    "2252531500458244",
+                                    "2252531600302545",
+                                    "2252531600439657",
+                                    "2252531600542953",
+                                    "2252531600552460",
+                                    "2252531700301668",
+                                    "2252531700302701",
+                                    "2252531700350960",
+                                    "2252531700450771",
+                                    "2252531700532452",
+                                    "2252531700561186",
+                                    "2252531900453969",
+                                    "2252531900497318",
+                                    "2252531900542272",
+                                    "2252531900569549",
+                                    "2252532000439238",
+                                    "2252532000542026",
+                                    "2252532000569712",
+                                    "2252532200294273",
+                                    "2252532200499547",
+                                    "2252532200544610",
+                                    "2252532200569792",
+                                    "2252532300539048",
+                                    "2252532300572788",
+                                    "2252532400561606",
+                                    "2252532600539597",
+                                    "2252532600563339",
+                                    "2252532700306130",
+                                    "2252532700445520",
+                                    "2252532700460596",
+                                    "2252532700539233",
+                                    "2252532700558274",
+                                    "2252532800413345",
+                                    "2252532800413533",
+                                    "2252532800442864",
+                                    "2252532800552537",
+                                    "2252533000533554",
+                                    "2252533000567429",
+                                    "2252533100533875",
+                                    "2252533100537987",
+                                    "2252541100441894",
+                                    "2252541100501062",
+                                    "2252541200490244",
+                                    "2252541200503030",
+                                    "2252541200545339",
+                                    "2252541300295178",
+                                    "2252541300303338",
+                                    "2252541300326136",
+                                    "2252541300326193",
+                                    "2252541300347614",
+                                    "2252541300442593",
+                                    "2252541300444238",
+                                    "2252541300448343",
+                                    "2252541300452641",
+                                    "2252541300489512",
+                                    "2252541300490916",
+                                    "2252541300493888",
+                                    "2252541300499242",
+                                    "2252541300503100",
+                                    "2252541300537363",
+                                    "2252541300548265",
+                                    "2252541300551236",
+                                    "2252541300551253",
+                                    "2252541300561647",
+                                    "2252541300570991",
+                                    "2252541500299336",
+                                    "2252541500414386",
+                                    "2252541500532557",
+                                    "2252541500556561",
+                                    "2252541500560459",
+                                    "2252541500562125",
+                                    "2252541600297175",
+                                    "2252541600343836",
+                                    "2252541600458338",
+                                    "2252541600490856",
+                                    "2252541600494539",
+                                    "2252541600506064",
+                                    "2252541600571138",
+                                    "2252541700323553",
+                                    "2252541700326413",
+                                    "2252541700332694",
+                                    "2252541700347471",
+                                    "2252541700351391",
+                                    "2252541700450465",
+                                    "2252541700489287",
+                                    "2252541700497236",
+                                    "2252541700497397",
+                                    "2252541700501168",
+                                    "2252541700501666",
+                                    "2252541700508083",
+                                    "2252541800454323",
+                                    "2252541800563021",
+                                    "2252541900294279",
+                                    "2252541900294827",
+                                    "2252541900299131",
+                                    "2252541900301534",
+                                    "2252541900312339",
+                                    "2252541900319573",
+                                    "2252541900325886",
+                                    "2252541900338619",
+                                    "2252541900344400",
+                                    "2252541900348159",
+                                    "2252541900348562",
+                                    "2252541900351293",
+                                    "2252541900441228",
+                                    "2252541900441384",
+                                    "2252541900441705",
+                                    "2252541900444595",
+                                    "2252541900449021",
+                                    "2252541900449053",
+                                    "2252541900450103",
+                                    "2252541900454676",
+                                    "2252541900455759",
+                                    "2252541900455872",
+                                    "2252541900495595",
+                                    "2252541900495878",
+                                    "2252541900497938",
+                                    "2252541900501056",
+                                    "2252541900502354",
+                                    "2252541900502608",
+                                    "2252541900503618",
+                                    "2252541900504009",
+                                    "2252541900504908",
+                                    "2252541900507292",
+                                    "2252541900509395",
+                                    "2252541900531849",
+                                    "2252541900541798",
+                                    "2252541900544573",
+                                    "2252541900545495",
+                                    "2252541900546236",
+                                    "2252541900547961",
+                                    "2252541900550446",
+                                    "2252541900553579",
+                                    "2252541900558617",
+                                    "2252541900559074",
+                                    "2252541900560344",
+                                    "2252541900561694",
+                                    "2252541900565551",
+                                    "2252541900566314",
+                                    "2252541900567280",
+                                    "2252541900572887",
+                                    "2252542000490699",
+                                    "2252542200297259",
+                                    "2252542200348288",
+                                    "2252542200414198",
+                                    "2252542200442108",
+                                    "2252542200451661",
+                                    "2252542200454577",
+                                    "2252542200488632",
+                                    "2252542200503883",
+                                    "2252542200510338",
+                                    "2252542200529946",
+                                    "2252542200534615",
+                                    "2252542200548077",
+                                    "2252542200548232",
+                                    "2252542200548473",
+                                    "2252542200549107",
+                                    "2252542200551676",
+                                    "2252542200555651",
+                                    "2252542200565990",
+                                    "2252542300343784",
+                                    "2252542300344371",
+                                    "2252542300445291",
+                                    "2252542300445430",
+                                    "2252542300448563",
+                                    "2252542300450720",
+                                    "2252542300458609",
+                                    "2252542300492803",
+                                    "2252542300495152",
+                                    "2252542300497204",
+                                    "2252542300501016",
+                                    "2252542300532971",
+                                    "2252542300534170",
+                                    "2252542300542389",
+                                    "2252542300546431",
+                                    "2252542300547398",
+                                    "2252542300554126",
+                                    "2252542300568291",
+                                    "2252542400345824",
+                                    "2252542400438186",
+                                    "2252542400447122",
+                                    "2252542400498073",
+                                    "2252542400502792",
+                                    "2252542400531070",
+                                    "2252542400569482",
+                                    "2252542500305802",
+                                    "2252542500440889",
+                                    "2252542500443189",
+                                    "2252542500489264",
+                                    "2252542500541401",
+                                    "2252542500556739",
+                                    "2252542600293841",
+                                    "2252542600294159",
+                                    "2252542600295299",
+                                    "2252542600295463",
+                                    "2252542600297410",
+                                    "2252542600298456",
+                                    "2252542600300963",
+                                    "2252542600302431",
+                                    "2252542600314472",
+                                    "2252542600323139",
+                                    "2252542600344875",
+                                    "2252542600346575",
+                                    "2252542600347756",
+                                    "2252542600439012",
+                                    "2252542600440843",
+                                    "2252542600442404",
+                                    "2252542600442783",
+                                    "2252542600444120",
+                                    "2252542600444611",
+                                    "2252542600444963",
+                                    "2252542600453293",
+                                    "2252542600453791",
+                                    "2252542600454060",
+                                    "2252542600454159",
+                                    "2252542600458559",
+                                    "2252542600461065",
+                                    "2252542600489629",
+                                    "2252542600489637",
+                                    "2252542600490007",
+                                    "2252542600496004",
+                                    "2252542600497549",
+                                    "2252542600498096",
+                                    "2252542600498775",
+                                    "2252542600499891",
+                                    "2252542600500657",
+                                    "2252542600507148",
+                                    "2252542600508777",
+                                    "2252542600510702",
+                                    "2252542600510799",
+                                    "2252542600530968",
+                                    "2252542600531539",
+                                    "2252542600533002",
+                                    "2252542600533376",
+                                    "2252542600533937",
+                                    "2252542600535518",
+                                    "2252542600543083",
+                                    "2252542600543322",
+                                    "2252542600546299",
+                                    "2252542600550690",
+                                    "2252542600552535",
+                                    "2252542600554959",
+                                    "2252542600555305",
+                                    "2252542600557168",
+                                    "2252542600563219",
+                                    "2252542600565455",
+                                    "2252542600566404",
+                                    "2252542600567594",
+                                    "2252542600572238",
+                                    "2252542700297015",
+                                    "2252542700298909",
+                                    "2252542700322790",
+                                    "2252542700343645",
+                                    "2252542700344470",
+                                    "2252542700414996",
+                                    "2252542700442996",
+                                    "2252542700445229",
+                                    "2252542700451364",
+                                    "2252542700454705",
+                                    "2252542700457642",
+                                    "2252542700459965",
+                                    "2252542700494668",
+                                    "2252542700494964",
+                                    "2252542700498636",
+                                    "2252542700500094",
+                                    "2252542700506433",
+                                    "2252542700533163",
+                                    "2252542700542158",
+                                    "2252542700542457",
+                                    "2252542700544236",
+                                    "2252542700546166",
+                                    "2252542700556274",
+                                    "2252542700561068",
+                                    "2252542700562032",
+                                    "2252542700562831",
+                                    "2252542800302723",
+                                    "2252542800495019",
+                                    "2252542800497351",
+                                    "2252542800507430",
+                                    "2252542800533579",
+                                    "2252542800535533",
+                                    "2252542800561233",
+                                    "2252542800563500",
+                                    "2252542800568348",
+                                    "2252542900300816",
+                                    "2252542900556512",
+                                    "2252543000547534",
+                                    "2252543100296833",
+                                    "2252543100322614",
+                                    "2252543100348349",
+                                    "2252543100546039",
+                                    "2252543100563001",
+                                    "2252543100566226",
+                                    "2252543100571893",
+                                    "2252551200569027",
+                                    "2252551300347250",
+                                    "2252551300500711",
+                                    "2252551300505539",
+                                    "2252551300542008",
+                                    "2252551300561580",
+                                    "2252551500346274",
+                                    "2252551600444391",
+                                    "2252551600538121",
+                                    "2252551600566996",
+                                    "2252551700306550",
+                                    "2252551700326430",
+                                    "2252551700332802",
+                                    "2252551700346921",
+                                    "2252551700439453",
+                                    "2252551700454732",
+                                    "2252551700458687",
+                                    "2252551700531875",
+                                    "2252551700549396",
+                                    "2252551700550616",
+                                    "2252551700566393",
+                                    "2252551800545968",
+                                    "2252551900301112",
+                                    "2252551900325824",
+                                    "2252551900325900",
+                                    "2252551900344729",
+                                    "2252551900445048",
+                                    "2252551900451868",
+                                    "2252551900459981",
+                                    "2252551900495530",
+                                    "2252551900498222",
+                                    "2252551900506728",
+                                    "2252551900509890",
+                                    "2252551900530891",
+                                    "2252551900533085",
+                                    "2252551900552123",
+                                    "2252551900552961",
+                                    "2252551900559319",
+                                    "2252551900559480",
+                                    "2252551900562597",
+                                    "2252551900569628",
+                                    "2252552000295021",
+                                    "2252552000447209",
+                                    "2252552200440040",
+                                    "2252552200446767",
+                                    "2252552200540625",
+                                    "2252552300332907",
+                                    "2252552300343723",
+                                    "2252552300414509",
+                                    "2252552300545298",
+                                    "2252552300564135",
+                                    "2252552400444950",
+                                    "2252552500303131",
+                                    "2252552500486633",
+                                    "2252552500505908",
+                                    "2252552500569762",
+                                    "2252552600293852",
+                                    "2252552600297654",
+                                    "2252552600299358",
+                                    "2252552600303328",
+                                    "2252552600305799",
+                                    "2252552600343886",
+                                    "2252552600439504",
+                                    "2252552600487148",
+                                    "2252552600490382",
+                                    "2252552600530224",
+                                    "2252552600542183",
+                                    "2252552600546443",
+                                    "2252552600564932",
+                                    "2252552600565262",
+                                    "2252552600568530",
+                                    "2252552700488377",
+                                    "2252552700552412",
+                                    "2252552800446828",
+                                    "2252552800448983",
+                                    "2252552800545611",
+                                    "2252553100332636",
+                                    "2252553100447029",
+                                    "2252553100509303",
+                                    "2252562800501547"
+                                ],
+                      "rollLength":  16,
+                      "name":  "RRB Kolkata (CEN 05/2025)",
+                      "cenNo":  "CEN 05/2025",
+                      "totalShortlisted":  626,
+                      "exam":  "RRB JE CBT-2 / DV \u0026 ME"
+                  },
+                  {
+                      "shortName":  "RRB Ranchi",
+                      "id":  "ranchi",
+                      "sampleRolls":  [
+                                          "2752511600144022",
+                                          "2752511600153050",
+                                          "2752552700164146"
+                                      ],
+                      "prefix":  "27525",
+                      "rolls":  [
+                                    "2752511600144022",
+                                    "2752511600153050",
+                                    "2752511600161782",
+                                    "2752511600167268",
+                                    "2752511800148250",
+                                    "2752512400150030",
+                                    "2752512400156274",
+                                    "2752512500151796",
+                                    "2752512600146082",
+                                    "2752512700142684",
+                                    "2752512700147532",
+                                    "2752512700148980",
+                                    "2752512700154840",
+                                    "2752512700158360",
+                                    "2752512700159250",
+                                    "2752512700164944",
+                                    "2752512700165749",
+                                    "2752512700166006",
+                                    "2752521300143226",
+                                    "2752521300149757",
+                                    "2752521300155922",
+                                    "2752521300161257",
+                                    "2752521500150540",
+                                    "2752521500154964",
+                                    "2752521600166775",
+                                    "2752521700152008",
+                                    "2752521700165494",
+                                    "2752521900149450",
+                                    "2752521900157610",
+                                    "2752522300158278",
+                                    "2752522400152304",
+                                    "2752522600147114",
+                                    "2752522600154328",
+                                    "2752522700151481",
+                                    "2752522700154920",
+                                    "2752522700163622",
+                                    "2752522800216877",
+                                    "2752531200164046",
+                                    "2752531600143628",
+                                    "2752532300144487",
+                                    "2752532700143269",
+                                    "2752532700146490",
+                                    "2752532700149980",
+                                    "2752532700157060",
+                                    "2752532700216590",
+                                    "2752533100159355",
+                                    "2752541300150254",
+                                    "2752541300157005",
+                                    "2752541300159917",
+                                    "2752541500154151",
+                                    "2752541600157616",
+                                    "2752541700143129",
+                                    "2752541800165268",
+                                    "2752541900146334",
+                                    "2752541900150018",
+                                    "2752541900151275",
+                                    "2752541900152098",
+                                    "2752541900153657",
+                                    "2752541900163552",
+                                    "2752542000154639",
+                                    "2752542200158887",
+                                    "2752542300144537",
+                                    "2752542300146381",
+                                    "2752542300149446",
+                                    "2752542300163196",
+                                    "2752542500152314",
+                                    "2752542500166997",
+                                    "2752542600144049",
+                                    "2752542600145936",
+                                    "2752542600151263",
+                                    "2752542600151388",
+                                    "2752542600154025",
+                                    "2752542600157874",
+                                    "2752542600161652",
+                                    "2752542600162185",
+                                    "2752542600163953",
+                                    "2752542600167160",
+                                    "2752542700146484",
+                                    "2752542700146783",
+                                    "2752542700147155",
+                                    "2752542700148946",
+                                    "2752542700153830",
+                                    "2752542700155991",
+                                    "2752542700156524",
+                                    "2752542700157111",
+                                    "2752542700158756",
+                                    "2752542700159805",
+                                    "2752542700160630",
+                                    "2752542700161288",
+                                    "2752542700162350",
+                                    "2752542800150976",
+                                    "2752543100151767",
+                                    "2752543100154404",
+                                    "2752543100159212",
+                                    "2752551400158333",
+                                    "2752551600163165",
+                                    "2752551700159475",
+                                    "2752551900151899",
+                                    "2752551900155407",
+                                    "2752552500166598",
+                                    "2752552600142697",
+                                    "2752552600149129",
+                                    "2752552600151521",
+                                    "2752552600151540",
+                                    "2752552600166566",
+                                    "2752552700146323",
+                                    "2752552700157339",
+                                    "2752552700164146"
+                                ],
+                      "rollLength":  16,
+                      "name":  "RRB Ranchi (CEN 05/2025)",
+                      "cenNo":  "CEN 05/2025",
+                      "totalShortlisted":  108,
+                      "exam":  "RRB JE CBT-2 / DV \u0026 ME"
+                  }
+              ]
+}
+;
+    let zonesData = window.RRB_ZONES_DATA || INLINE_RRB_DATA;
+
+    // Initialize dataset and UI
+    async function initWidget() {
+      // If external script hasn't loaded data, attempt fetch or fallback
+      if (!zonesData || !zonesData.zones) {
+        try {
+          const res = await fetch('data/zones.json');
+          if (res.ok) {
+            zonesData = await res.json();
+          }
+        } catch (e) {
+          console.log("Using external/inline dataset");
+        }
+      }
+
+      // Populate Zones Dropdown
+      const zoneSelect = document.getElementById('zoneSelect');
+      const zoneCountBadge = document.getElementById('zoneCountBadge');
+      
+      if (zonesData && zonesData.zones && zonesData.zones.length > 0) {
+        zoneCountBadge.textContent = zonesData.zones.length + " Zones Available";
+        zoneSelect.innerHTML = '<option value="" disabled selected>-- Select Your Applied RRB Zone --</option>';
+        
+        zonesData.zones.forEach(zone => {
+          const opt = document.createElement('option');
+          opt.value = zone.id;
+          opt.textContent = zone.shortName + " (" + zone.totalShortlisted + " Shortlisted)";
+          zoneSelect.appendChild(opt);
+        });
+
+        // Default to first zone
+        zoneSelect.selectedIndex = 1;
+        handleZoneChange();
+      }
+
+      // Setup Iframe snippet with current URL (height 560 for compact widget)
+      const currentUrl = window.location.href.split('#')[0];
+      const snippet = '<iframe src="' + currentUrl + '" width="100%" height="560" frameborder="0" style="border:none; border-radius:12px; overflow:hidden;" title="RRB JE CBT-2 Result Checker"></iframe>';
+      document.getElementById('iframeSnippet').textContent = snippet;
+
+      // Sync settings input
+      document.getElementById('sheetUrlInput').value = APPS_SCRIPT_URL;
+
+      // Notify parent iframe of height
+      notifyResize();
+    }
+
+    // Clean Roll Number Input
+    function cleanRollInput(el) {
+      el.value = el.value.replace(/[^0-9]/g, '');
+    }
+
+    // Handle Zone Change
+    function handleZoneChange() {
+      const zoneId = document.getElementById('zoneSelect').value;
+      const zone = getZoneById(zoneId);
+      const prefixHint = document.getElementById('rollPrefixHint');
+      const sampleChips = document.getElementById('sampleChips');
+
+      if (zone) {
+        prefixHint.textContent = zone.rollLength + " Digits (Prefix: " + zone.prefix + "...)";
+        
+        // Build sample test pills
+        sampleChips.innerHTML = '<span>Test:</span>';
+        if (zone.sampleRolls && zone.sampleRolls.length > 0) {
+          const qualifiedPill = document.createElement('button');
+          qualifiedPill.type = 'button';
+          qualifiedPill.className = 'sample-pill';
+          qualifiedPill.textContent = 'Qualified Roll';
+          qualifiedPill.title = 'Click to test shortlisted roll: ' + zone.sampleRolls[0];
+          qualifiedPill.onclick = () => fillSample(zone.sampleRolls[0], true);
+          sampleChips.appendChild(qualifiedPill);
+        }
+
+        const notSelectedPill = document.createElement('button');
+        notSelectedPill.type = 'button';
+        notSelectedPill.className = 'sample-pill';
+        notSelectedPill.textContent = 'Not Shortlisted';
+        notSelectedPill.onclick = () => fillSample(zone.prefix + '99999999999', false);
+        sampleChips.appendChild(notSelectedPill);
+      }
+    }
+
+    function fillSample(roll, isQual) {
+      document.getElementById('candidateName').value = isQual ? "Aakash Verma" : "Vikas Kumar";
+      document.getElementById('mobileNumber').value = "9876543210";
+      document.getElementById('rollNumber').value = roll;
+    }
+
+    function getZoneById(id) {
+      if (!zonesData || !zonesData.zones) return null;
+      return zonesData.zones.find(z => z.id === id);
+    }
+
+    // Check Result Submission
+    async function handleCheckResult(e) {
+      e.preventDefault();
+
+      const zoneId = document.getElementById('zoneSelect').value;
+      const name = document.getElementById('candidateName').value.trim();
+      const mobile = document.getElementById('mobileNumber').value.trim();
+      const roll = document.getElementById('rollNumber').value.trim();
+
+      if (!zoneId) {
+        alert("Please select your RRB Zone.");
+        return;
+      }
+
+      if (mobile.length !== 10) {
+        alert("Please enter a valid 10-digit mobile number.");
+        document.getElementById('mobileNumber').focus();
+        return;
+      }
+
+      const zone = getZoneById(zoneId);
+      if (!zone) {
+        alert("Invalid zone selected.");
+        return;
+      }
+
+      // UI Loading state
+      const btnSubmit = document.getElementById('btnSubmit');
+      const btnText = document.getElementById('btnText');
+      const btnSpinner = document.getElementById('btnSpinner');
+      const btnArrow = document.getElementById('btnArrow');
+
+      btnSubmit.disabled = true;
+      btnText.textContent = "Verifying Shortlist...";
+      btnSpinner.style.display = "block";
+      btnArrow.style.display = "none";
+
+      // Match roll number in zone's shortlisted list
+      const isQualified = zone.rolls.includes(roll);
+      const statusText = isQualified ? "QUALIFIED (PROVISIONALLY SHORTLISTED)" : "NOT_SHORTLISTED";
+
+      // Send data to Google Apps Script (in background)
+      sendToGoogleSheet({
+        name: name,
+        mobile: mobile,
+        rollNumber: roll,
+        zone: zone.shortName,
+        status: statusText,
+        userAgent: navigator.userAgent
+      });
+
+      // Deliberate realistic verification delay
+      setTimeout(() => {
+        btnSubmit.disabled = false;
+        btnText.textContent = "Check My Result";
+        btnSpinner.style.display = "none";
+        btnArrow.style.display = "block";
+
+        displayResult(isQualified, {
+          name: name,
+          mobile: mobile,
+          roll: roll,
+          zone: zone.shortName
+        });
+      }, 400);
+    }
+
+    // Display Result UI
+    function displayResult(isQualified, candidate) {
+      document.getElementById('formView').style.display = 'none';
+
+      if (isQualified) {
+        document.getElementById('resQualName').textContent = candidate.name;
+        document.getElementById('resQualRoll').textContent = candidate.roll;
+        document.getElementById('resQualMobile').textContent = "+91 " + candidate.mobile;
+        document.getElementById('resQualZone').textContent = candidate.zone;
+
+        // WhatsApp Share link (plain text encoded)
+        const shareMsg = "I have been PROVISIONALLY SHORTLISTED in RRB JE CBT-2 (" + candidate.zone + ") under CEN 05/2025! Roll No: " + candidate.roll + ". Check your result: " + window.location.href.split('#')[0];
+        document.getElementById('btnShareWhatsApp').href = "https://api.whatsapp.com/send?text=" + encodeURIComponent(shareMsg);
+
+        document.getElementById('resultQualifiedView').style.display = 'block';
+
+        // Trigger celebratory confetti
+        fireConfetti();
+      } else {
+        document.getElementById('resNotName').textContent = candidate.name;
+        document.getElementById('resNotRoll').textContent = candidate.roll;
+        document.getElementById('resNotZone').textContent = candidate.zone;
+
+        document.getElementById('resultNotSelectedView').style.display = 'block';
+      }
+
+      notifyResize();
+    }
+
+    // Reset Form
+    function resetForm() {
+      document.getElementById('resultQualifiedView').style.display = 'none';
+      document.getElementById('resultNotSelectedView').style.display = 'none';
+      document.getElementById('formView').style.display = 'block';
+      document.getElementById('rollNumber').value = '';
+      document.getElementById('rollNumber').focus();
+      notifyResize();
+    }
+
+    // Send to Google Sheet via Google Apps Script
+    async function sendToGoogleSheet(payload) {
+      if (!APPS_SCRIPT_URL) return;
+
+      try {
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        showToast("Details recorded to Google Sheet");
+      } catch (err) {
+        console.warn("Could not log to Google Sheet:", err);
+      }
+    }
+
+    // Toast Notification
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Modals
+    function openEmbedModal() {
+      document.getElementById('embedModal').style.display = 'flex';
+    }
+
+    function openSettingsModal() {
+      document.getElementById('settingsModal').style.display = 'flex';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    function closeModalOnBackdrop(e, id) {
+      if (e.target.id === id) closeModal(id);
+    }
+
+    function copyIframeCode() {
+      const code = document.getElementById('iframeSnippet').textContent;
+      navigator.clipboard.writeText(code).then(() => {
+        const btn = document.getElementById('copyBtnText');
+        btn.textContent = "Copied to Clipboard!";
+        setTimeout(() => btn.textContent = "Copy Embed Code", 2500);
+      });
+    }
+
+    function saveSheetUrl() {
+      const url = document.getElementById('sheetUrlInput').value.trim();
+      if (url) {
+        localStorage.setItem("RRB_SHEET_URL", url);
+        APPS_SCRIPT_URL = url;
+        showToast("Google Sheet URL updated!");
+      }
+      closeModal('settingsModal');
+    }
+
+    // Iframe Auto-Resize Messenger
+    function notifyResize() {
+      if (window.parent && window.parent !== window) {
+        const height = document.querySelector('.widget-container').scrollHeight + 20;
+        window.parent.postMessage({ type: 'rrb-widget-resize', height: height }, '*');
+      }
+    }
+
+    window.addEventListener('resize', notifyResize);
+
+    /**
+     * PURE JAVASCRIPT PARTICLE CONFETTI ENGINE
+     */
+    function fireConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particles = [];
+      const colors = ['#059669', '#10b981', '#0284c7', '#38bdf8', '#f59e0b', '#e11d48', '#6366f1'];
+
+      for (let i = 0; i < 110; i++) {
+        particles.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2 - 40,
+          w: Math.random() * 8 + 4,
+          h: Math.random() * 5 + 3,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          vx: (Math.random() - 0.5) * 18,
+          vy: (Math.random() - 0.7) * 20,
+          gravity: 0.42,
+          rotation: Math.random() * 360,
+          rotationSpeed: (Math.random() - 0.5) * 10,
+          opacity: 1
+        });
+      }
+
+      let animId;
+      const startTime = Date.now();
+
+      function update() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += p.gravity;
+          p.vx *= 0.98;
+          p.rotation += p.rotationSpeed;
+
+          if (Date.now() - startTime > 1600) {
+            p.opacity -= 0.025;
+          }
+
+          if (p.opacity > 0 && p.y < canvas.height + 50) {
+            alive = true;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+            ctx.rotate((p.rotation * Math.PI) / 180);
+            ctx.globalAlpha = Math.max(0, p.opacity);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+            ctx.restore();
+          }
+        });
+
+        if (alive) {
+          animId = requestAnimationFrame(update);
+        } else {
+          cancelAnimationFrame(animId);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+
+      update();
+    }
+
+    // Start on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', initWidget);
+  </script>
+</body>
+</html>
