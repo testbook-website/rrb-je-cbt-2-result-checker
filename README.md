@@ -16,9 +16,10 @@ All candidate submissions (Name, Mobile Number, Roll Number, Zone, and Shortlist
   - **RRB Guwahati**: 7 shortlisted candidates (Prefix `20525...`)
   - **RRB Kolkata**: 626 shortlisted candidates (Prefix `22525...`)
   - **RRB Mumbai**: 430 shortlisted candidates (Prefix `24525...`)
+  - **RRB Muzaffarpur**: 23 shortlisted candidates (Prefix `25525...`)
   - **RRB Patna**: 47 shortlisted candidates (Prefix `26525...`)
   - **RRB Ranchi**: 108 shortlisted candidates (Prefix `27525...`)
-  - **Total**: 1,696 shortlisted candidates across 9 RRB zones!
+  - **Total**: 1,719 shortlisted candidates across 10 RRB zones!
 - **Instant Result Feedback**:
   - **Qualified / Shortlisted**: Celebratory particle confetti explosion, candidate verification slip, and official DV & Medical Exam guidelines.
   - **Not Shortlisted**: Empathetic guidance with verification tips and advisory to check individual scorecard on the RRB portal.
