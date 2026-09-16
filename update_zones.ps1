@@ -66,8 +66,8 @@ $json = $data | ConvertTo-Json -Depth 5
 
 # Update inline data in index.html safely with UTF-8
 $indexHtml = [System.IO.File]::ReadAllText("index.html", [System.Text.Encoding]::UTF8)
-$regex = New-Object System.Text.RegularExpressions.Regex("const INLINE_RRB_DATA = \{[\s\S]*?\};")
-$newInline = "const INLINE_RRB_DATA = $json;"
+$regex = New-Object System.Text.RegularExpressions.Regex("const INLINE_RRB_DATA = \{[\s\S]*?;\r?\n")
+$newInline = "const INLINE_RRB_DATA = " + $json + ";`r`n"
 $updatedHtml = $regex.Replace($indexHtml, $newInline, 1)
 [System.IO.File]::WriteAllText("index.html", $updatedHtml, [System.Text.Encoding]::UTF8)
 
